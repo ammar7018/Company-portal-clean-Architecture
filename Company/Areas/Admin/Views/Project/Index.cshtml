@@ -1,0 +1,117 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    var ProjectNotAssigned = "text-dark";
+    var ProjectWaitingResponse = "text-dark";
+    var ProjectInProcess = "text-dark";
+    var ProjectInReview = "text-dark";
+    var ProjectFinish = "text-dark";
+    var all = "text-dark";
+
+    switch (status)
+    {
+        case SD.ProjectNotAssigned:
+            ProjectNotAssigned = "active text-light bg-info";
+            break;
+        case SD.ProjectWaitingResponse:
+            ProjectWaitingResponse = "active text-light bg-info";
+            break;
+        case SD.ProjectInProcess:
+            ProjectInProcess = "active text-light bg-info";
+            break;
+        case SD.ProjectInReview:
+            ProjectInReview = "active text-light bg-info";
+            break;
+        case SD.ProjectFinish:
+            ProjectFinish = "active text-light bg-info";
+            break;
+        default:
+            all = "active text-light bg-info";
+            break;
+
+    }
+
+}
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-info bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Project List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+
+        <div class="row pb-3">
+            <div class="col-12 text-end">
+                <a asp-controller="Project" asp-action="Upsert" class="btn btn-info">
+                    <i class="bi bi-plus-circle"></i>  Create New Project
+                </a>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="@SD.ProjectNotAssigned">
+                <li class="list-group-item @ProjectNotAssigned ">Not Assigned</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="@SD.ProjectWaitingResponse">
+                <li class="list-group-item @ProjectWaitingResponse">Waiting Response</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="@SD.ProjectInProcess">
+                <li class="list-group-item @ProjectInProcess ">In Process</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="@SD.ProjectInReview">
+                <li class="list-group-item @ProjectInReview ">In Review</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="@SD.ProjectFinish">
+                <li class="list-group-item @ProjectFinish">Finished</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Project" asp-action="Index" asp-route-status="all">
+                <li class="list-group-item @all">All</li>
+                </a>
+            </ul>
+        </div>
+
+
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+                    <th>
+                        Creation Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Service
+                    </th>
+                    <th>
+                        Worker
+                    </th>
+                    <th></th>
+
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/project.js"></script>
+}

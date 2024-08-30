@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/styleLogin.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignIn&SignUp</title>
+    <script src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <main role="main" class="pb-3">
+        <partial name="_Notification" />
+        @RenderBody()
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+
+
+@section Scripts {
+    <script src="~/js/login.js"></script>
+}
